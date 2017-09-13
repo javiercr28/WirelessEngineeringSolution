@@ -63,7 +63,7 @@ advertise_service( server_sock, "AquaPiServer",
                    profiles = [ SERIAL_PORT_PROFILE ],
 #                   protocols = [ OBEX_UUID ]
                     )
-while True:          
+while True:
 	print "Waiting for connection on RFCOMM channel %d" % port
 
 	client_sock, client_info = server_sock.accept()
@@ -97,5 +97,4 @@ while True:
 		client_sock.close()
 		server_sock.close()
 		print "all done"
-
 break
