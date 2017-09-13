@@ -16,16 +16,17 @@ import time
 import RPi.GPIO as GPIO
 from bluetooth import *
 
-os.system('modprobe w1-gpio')
-os.system('modprobe w1-term')
+#os.system('modprobe w1-gpio')
+#os.system('modprobe w1-term')
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(14, GPIO.OUT)
 
-base_dir = '/sys/bus/w1/devices/'
-device_folder = glob.glob(base_dir + '28*')[0]
-device_file = device_folder + '/w1_slave'
+#base_dir = '/sys/bus/w1/devices/'
+#device_folder = glob.glob(base_dir + '28*')[0]
+#device_file = device_folder + '/w1_slave'
 
+"""
 def read_temp_raw():
     f = open(device_file, 'r')
     lines = f.readlines()
@@ -43,7 +44,7 @@ def read_temp():
         temp_c = float(temp_string) / 1000.0
         temp_f = temp_c * 9.0 / 5.0 + 32.0
         return temp_c
-
+"""
 #while True:
 #	print(read_temp())
 #	time.sleep(1)
@@ -73,20 +74,21 @@ while True:
 	        data = client_sock.recv(1024)
         	if len(data) == 0: break
 	        print "received [%s]" % data
-
+        """
 		if data == 'temp':
 			data = str(read_temp())+'!'
-		elif data == 'lightOn':
-			GPIO.output(17,False)
+		el
+        """
+        if data == 'lightOn':
+			GPIO.output(13,False)
 			data = 'light on!'
 		elif data == 'lightOff':
-			GPIO.output(17,True)
+			GPIO.output(13,True)
 			data = 'light off!'
 		else:
 			data = 'WTF!'
 	        client_sock.send(data)
 		print "sending [%s]" % data
-
 	except IOError:
 		pass
 
